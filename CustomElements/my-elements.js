@@ -41,6 +41,9 @@ class MyElement extends HTMLElement {
           max-width: 100%;
           background-color: gray;
         }
+        ::slotted(.color-green) {
+          color: green;
+        }
       </style>
     `;
   }
