@@ -11,9 +11,6 @@ class MyElement extends HTMLElement {
   }
 
   attributeChangedCallback(attributeName, oldValue, newValue) {
-    console.log('attributeName', attributeName)
-    console.log('oldValue', oldValue)
-    console.log('newValue', newValue)
     if (newValue !== oldValue) {
       this[attributeName] = newValue;
     }
