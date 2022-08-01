@@ -7,26 +7,39 @@ class MyElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['imageurl', 'imagedescription']
+    return ["imageurl", "imagedescription"];
   }
 
   attributeChangedCallback(attributeName, oldValue, newValue) {
     if (newValue !== oldValue) {
       this[attributeName] = newValue;
     }
-
   }
-
-
 
   getStyles() {
     return /*html*/ `
       <style>
-        h1,h2{
+        :host {
+          display: inline-block;
+          width: 100%;
+          min-width: 300px;
+          max-width: 600px;
+          font-style: italic;
+          padding: 10px;
+        }
+        :host(.text-align-right) {
+          text-align: right;
+        }
+        :host([cyan]) {
+          background-color: cyan;
+        }
+        :host-context(.text-align-right)  h2{
           color: red;
         }
-        .subtitle{
-          font-style: italic;
+        :host-context(article.card) {
+          display: block;
+          max-width: 100%;
+          background-color: gray;
         }
       </style>
     `;
@@ -35,13 +48,13 @@ class MyElement extends HTMLElement {
     const template = document.createElement("template");
     template.innerHTML = /*html*/ `
     <section>
-    <h1 ><slot name="title"></slot></h1>
-    <h2 class="subtitle">${this?.subtitle}</h2>
-      <div>
-        <p><slot name="paragraph"></slot></p>
-        <p>${this?.otherparagraph}</p>
-        <img src="${this.imageurl}" alt="${this?.imagedescription}" />
-      </div>
+      <h1 ><slot name="title"></slot></h1>
+      <h2 class="subtitle">${this?.subtitle}</h2>
+        <div>
+          <p><slot name="paragraph"></slot></p>
+          <p>${this?.otherparagraph}</p>
+          <img src="${this.imageurl ?? ''}" alt="${this?.imagedescription ?? ''}" />
+        </div>
     </section>
     ${this.getStyles()}
     `;

@@ -22,6 +22,24 @@
       <span slot="title">Title using slot</span>
       <span slot="paragraph">Paragraph using slot</span>
     </my-element>
+
+    <my-element class="text-align-right" subtitle="Subtitle using attributes 2">
+      <span slot="title">Title using slot 2</span>
+    </my-element>
+
+    <my-element cyan>
+      <span slot="title">Title using slot 3</span>
+      <span slot="paragraph">Paragraph using slot 3</span>
+    </my-element>
+
+    <article class="card">
+      <my-element
+        subtitle="Subtitle using attributes 4"
+        otherParagraph="Other paragraph using attributes 4"
+      >
+      </my-element>
+    </article>
+
     <my-custom-element></my-custom-element>
     <script type="module" src="./my-elements.js"></script>
     <script type="module" src="./my-custom-element.js"></script>
